@@ -3,7 +3,6 @@
 import sys
 import asyncio
 import logging
-import time
 from .vars import Var
 from aiohttp import web
 from pyrogram import idle
@@ -35,15 +34,15 @@ else:
 async def start_services():
     print()
     print("-------------------- Initializing Telegram Bot --------------------")
-    # await StreamBot.start()
-    # bot_info = await StreamBot.get_me()
-    # StreamBot.username = bot_info.username
+    await StreamBot.start()
+    bot_info = await StreamBot.get_me()
+    StreamBot.username = bot_info.username
     print("------------------------------ DONE ------------------------------")
     print()
     print(
         "---------------------- Initializing Clients ----------------------"
     )
-    # await initialize_clients()
+    await initialize_clients()
     print("------------------------------ DONE ------------------------------")
     if Var.ON_HEROKU:
         print("------------------ Starting Keep Alive Service ------------------")
@@ -52,13 +51,14 @@ async def start_services():
     print("--------------------- Initalizing Web Server ---------------------")
     await server.setup()
     bind_address = "0.0.0.0" if Var.ON_HEROKU else Var.BIND_ADDRESS
-    await web.TCPSite(server, bind_address, Var.PORT).start()
+    x = await web.TCPSite(server, bind_address, Var.PORT).start()
+    print(x)
     print("------------------------------ DONE ------------------------------")
     print()
     print("------------------------- Service Started -------------------------")
-    # # print(f"                        bot =>> {bot_info.first_name}")
-    # if bot_info.dc_id:
-    #     print(f"                        DC ID =>> {str(bot_info.dc_id)}")
+    print(f"                        bot =>> {bot_info.first_name}")
+    if bot_info.dc_id:
+        print(f"                        DC ID =>> {str(bot_info.dc_id)}")
     print(f"                        server ip =>> {bind_address}:{Var.PORT}")
     if Var.ON_HEROKU:
         print(f"                        app running on =>> {Var.FQDN}")
@@ -71,12 +71,11 @@ async def start_services():
 |              Join @TechZBots                |
 |_____________________________________________|
     """)
-    time.sleep(4000)
-    # await idle()
+    await idle()
 
 async def cleanup():
     await server.cleanup()
-    # await StreamBot.stop()
+    await StreamBot.stop()
 
 if __name__ == "__main__":
     try:
