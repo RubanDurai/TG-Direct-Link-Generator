@@ -51,8 +51,11 @@ async def start_services():
     print("--------------------- Initalizing Web Server ---------------------")
     await server.setup()
     bind_address = "0.0.0.0" if Var.ON_HEROKU else Var.BIND_ADDRESS
-    x = await web.TCPSite(server, bind_address, Var.PORT).start()
-    print(x)
+    
+    pitpat = web.TCPSite(server, bind_address, Var.PORT)
+    print(pitpat.name)
+    await pitpat.start()
+
     print("------------------------------ DONE ------------------------------")
     print()
     print("------------------------- Service Started -------------------------")
