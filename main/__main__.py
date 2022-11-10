@@ -42,7 +42,7 @@ async def start_services():
     print(
         "---------------------- Initializing Clients ----------------------"
     )
-    await initialize_clients()
+    # await initialize_clients()
     print("------------------------------ DONE ------------------------------")
     if Var.ON_HEROKU:
         print("------------------ Starting Keep Alive Service ------------------")
@@ -74,7 +74,7 @@ async def start_services():
 
 async def cleanup():
     await server.cleanup()
-    await StreamBot.stop()
+    # await StreamBot.stop()
 
 if __name__ == "__main__":
     try:
