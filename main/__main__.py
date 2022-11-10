@@ -3,6 +3,7 @@
 import sys
 import asyncio
 import logging
+import time
 from .vars import Var
 from aiohttp import web
 from pyrogram import idle
@@ -70,6 +71,7 @@ async def start_services():
 |              Join @TechZBots                |
 |_____________________________________________|
     """)
+    time.sleep(4000)
     # await idle()
 
 async def cleanup():
