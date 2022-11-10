@@ -58,7 +58,7 @@ async def start_services():
     print("                        bot =>> {}".format(bot_info.first_name))
     if bot_info.dc_id:
         print("                        DC ID =>> {}".format(str(bot_info.dc_id)))
-    print("                        server ip =>> {}".format(bind_address, Var.PORT))
+    print("                        server ip =>> {}:{}".format(bind_address, Var.PORT))
     if Var.ON_HEROKU:
         print("                        app running on =>> {}".format(Var.FQDN))
     print("------------------------------------------------------------------")
