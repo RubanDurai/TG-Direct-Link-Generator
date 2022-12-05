@@ -12,6 +12,8 @@ from main.utils.human_readable import humanbytes
 from main.vars import Var
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+
+
 async def parse_file_id(message: "Message") -> Optional[FileId]:
     media = get_media_from_message(message)
     if media:
@@ -82,7 +84,18 @@ async def gen_link(m: Message,log_msg: Messages, from_channel: bool):
 
     page_link = f"{Var.URL}watch/{get_hash(log_msg)}{log_msg.message_id}"
     stream_link = f"{Var.URL}{log_msg.message_id}/{quote_plus(get_name(m))}?hash={get_hash(log_msg)}"
-    Stream_Text=lang.stream_msg_text.format(file_name, file_size, stream_link, page_link)
+    # droplink_stream = await get_shortlink(stream_link)
+    # droplink_page = await get_shortlink(page_link)
+
+    # droplink_stream =await bitly(f"https://{Var.SITE}/st?api={Var.API}&url={stream_link}")
+    # droplink_page = await bitly(f"https://{Var.SITE}/st?api={Var.API}&url={page_link}")
+
+    Stream_Text=lang.stream_msg_text.format(
+        file_name, 
+        file_size, 
+        stream_link, 
+        page_link,
+        )
     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🖥STREAM", url=page_link), InlineKeyboardButton("Dᴏᴡɴʟᴏᴀᴅ 📥", url=stream_link)]])
 
     if from_channel:
