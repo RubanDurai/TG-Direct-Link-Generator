@@ -8,14 +8,16 @@ load_dotenv()
 
 class Var(object):
     MULTI_CLIENT = False
-    API_ID = int(environ.get("API_ID", "13956112"))
-    API_HASH = str(environ.get("API_HASH", "a14d6d445c6be0a22f4a5ad401e0eab6"))
-    BOT_TOKEN = str(environ.get("BOT_TOKEN", "5439496290:AAFr-94va-YJrzHRRYALlu72Ph-tSUv_jtQ"))
+    API_ID = int(environ.get("API_ID"))
+    API_HASH = str(environ.get("API_HASH"))
+    BOT_TOKEN = str(environ.get("BOT_TOKEN"))
     SLEEP_THRESHOLD = int(environ.get("SLEEP_THRESHOLD", "60"))  # 1 minute
     WORKERS = int(environ.get("WORKERS", "6"))  # 6 workers = 6 commands at once
-    BIN_CHANNEL = int(environ.get("BIN_CHANNEL", "-1001713974897")) # you NEED to use a CHANNEL when you're using MULTI_CLIENT
+    BIN_CHANNEL = int(
+        environ.get("BIN_CHANNEL", None)
+    )  # you NEED to use a CHANNEL when you're using MULTI_CLIENT
     PORT = int(environ.get("PORT", 8080))
-    BIND_ADDRESS = str(environ.get("WEB_SERVER_BIND_ADDRESS", "65.20.66.251"))
+    BIND_ADDRESS = str(environ.get("WEB_SERVER_BIND_ADDRESS", "0.0.0.0"))
     PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
     HAS_SSL = environ.get("HAS_SSL", False)
     HAS_SSL = True if str(HAS_SSL).lower() == "true" else False
@@ -38,8 +40,9 @@ class Var(object):
             "s" if HAS_SSL else "", FQDN, "" if NO_PORT else ":" + str(PORT)
         )
 
-    UPDATES_CHANNEL = "TechZBots"
-    OWNER_ID = int(environ.get('OWNER_ID', '2062513342'))
+    UPDATES_CHANNEL = str(environ.get('UPDATES_CHANNEL', "T2linkss"))
+    OWNER_ID = int(environ.get('OWNER_ID', '777000'))
 
     BANNED_CHANNELS = list(set(int(x) for x in str(environ.get("BANNED_CHANNELS", "-1001296894100")).split()))
     BANNED_USERS = list(set(int(x) for x in str(environ.get("BANNED_USERS","5275470552 5287015877")).split()))
+    DROPLINK_API = str(environ.get('DROPLINK_API'))
