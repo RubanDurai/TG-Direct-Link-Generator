@@ -11,7 +11,7 @@ from pyrogram.errors import MessageDeleteForbidden
 
 deldbtnmsg=["Your Already Deleted the Link", "You can't undo the Action", "You can Resend the File to Regenerate New Link", "Why Clicking me Your Link is Dead", "This is Just a Button Showing that Your Link is Deleted"]
 
-@StreamBot.on_callback_query()
+# @StreamBot.on_callback_query()
 async def cb_data(bot, update: CallbackQuery):
     # lang = getattr(Language, update.from_user.language_code)
     lang = getattr(Language, "en")
